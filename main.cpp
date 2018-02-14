@@ -32,8 +32,16 @@ int main()
 {
   uWS::Hub h;
 
+  ////////////
+  // The coefficient/parameter initialization could be given by command line for circumventing building every time we want to adjust (as suggested by dsilver).
+  // Left that out since building is fast at my machine :-)
+  ////////////
+  double init_Kp = 0.22;
+  double init_Ki = 0.00009;
+  double init_Kd = 3.1;
+  bool runTwiddle = false;
   // Initialize the pid variable.
-  PID pid(0.22, 0.00009, 3.1, false);
+  PID pid(init_Kp, init_Ki, init_Kd, runTwiddle);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
