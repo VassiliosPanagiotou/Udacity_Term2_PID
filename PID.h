@@ -31,7 +31,7 @@ private:
   /*
   * Flag for running Twiddle
   */
-  bool m_runTwiddle;
+  bool m_RunTwiddle;
 
   /*
   * Constructor

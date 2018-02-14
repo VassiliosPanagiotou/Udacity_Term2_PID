@@ -26,7 +26,7 @@ double PID::getSteerValue(double cte)
 	}
 
 	// return steering value
-	return -(m_Kp * m_p_error + m_Ki * m_i_error + m_Kd * md_error);
+	return -(m_Kp * m_p_error + m_Ki * m_i_error + m_Kd * m_d_error);
 }
 
 PID::PID() {}

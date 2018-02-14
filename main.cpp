@@ -56,7 +56,7 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-		  double steer_value = = pid.getSteerValue(cte);
+		  double steer_value = pid.getSteerValue(cte);
 		  if (steer_value < -1.0) steer_value = -1.0;
 		  if (steer_value >  1.0) steer_value = 1.0;
 
