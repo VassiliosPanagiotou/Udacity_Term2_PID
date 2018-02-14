@@ -33,7 +33,7 @@ int main()
   uWS::Hub h;
 
   // Initialize the pid variable.
-  PID pid(0.22, 0.00009, 3.1, false);;
+  PID pid(0.22, 0.00009, 3.1, false);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
