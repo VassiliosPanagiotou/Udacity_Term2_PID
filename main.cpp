@@ -36,9 +36,16 @@ int main()
   // The coefficient/parameter initialization could be given by command line for circumventing building every time we want to adjust (as suggested by dsilver).
   // Left that out since building is fast at my machine :-)
   ////////////
-  double init_Kp = 0.22;
-  double init_Ki = 0.00009;
-  double init_Kd = 3.1;
+
+  // Values from the lesson - no to bad :-)
+  double init_Kp = 0.2;
+  double init_Ki = 0.0004;
+  double init_Kd = 3.0;
+
+  //double init_Kp = 0.22;
+  //double init_Ki = 0.00009;
+  //double init_Kd = 3.1;
+
   bool runTwiddle = false;
   // Initialize the pid variable.
   PID pid(init_Kp, init_Ki, init_Kd, runTwiddle);
