@@ -2,7 +2,7 @@
 #define TWIDDLE_H
 
 class STwiddle
-  {
+{
   public:
 	  STwiddle();
 	  virtual ~STwiddle();
@@ -20,7 +20,6 @@ class STwiddle
 	  bool isInitial;
 	  // Best error so far
 	  double bestError;
-  } 
 };
 
 #endif /* TWIDDLE_H */

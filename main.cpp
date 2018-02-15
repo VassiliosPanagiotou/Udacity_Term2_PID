@@ -38,15 +38,21 @@ int main()
   ////////////
 
   // Values from the lesson - no to bad :-)
-  double init_Kp = 0.2;
-  double init_Ki = 0.0004;
-  double init_Kd = 3.0;
+  //double init_Kp = 0.2;
+  //double init_Ki = 0.0004;
+  //double init_Kd = 3.0;
+
+  double init_Kp = 0.22;
+  double init_Ki = 0.000525;
+  double init_Kd = 3.1;
 
   //double init_Kp = 0.22;
   //double init_Ki = 0.00009;
   //double init_Kd = 3.1;
 
+  // Flag for running twiddle
   bool runTwiddle = false;
+
   // Initialize the pid variable.
   PID pid(init_Kp, init_Ki, init_Kd, runTwiddle);
 
