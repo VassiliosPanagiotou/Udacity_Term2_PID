@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 
+#include "Twiddle.h"
+
 class PID {
 public:
 	// Ctor
@@ -33,51 +35,19 @@ private:
   */
   bool m_RunTwiddle;
 
-  //Step Counter
+  // Step Counter
   unsigned m_StepCount;
-
-
-  struct STwiddle
-  {
-	  STwiddle(double Kp, double Ki, double Kd, double thres = 0.01) {
-	  
-		  k[0] = Kp;
-		  k[1] = Ki;
-		  k[2] = Kd;
-		  dk[0] = fabs(Kp) / 10.0;
-		  dk[1] = fabs(Ki) / 10.0;
-		  dk[2] = fabs(Kd) / 10.0;
-
-		  index = 0;
-		  isIncrease = true;
-		  threshold = thres;
-		  isInitial = true;
-		  bestError = 100000000.0;
-	  };
-
-	  virtual ~STwiddle();
-
-	  // Optimization gain
-	  double k[3];
-	  // Optimization gain increments
-	  double dk[3];
-	  // Gain index currently optimized 
-	  unsigned index;
-	  // Flag increase of gain (true) or decrease of gain (false)
-	  bool isIncrease;
-	  // Optimization threshold
-	  const double threshold;
-	  // Flag which indicates initial state
-	  bool isInitial;
-	  // Best error so far
-	  double bestError;
-  } m_twiddle;
+  
+  // Twiddle helper
+  STwiddle m_twiddle;
 
    /*
   * Initialize Errors - used after Twiddle run
   */
-  void InitError(double Kp, double Ki, double Kd);
+  void InitError();
 
+  // Runs twiddle
+  void RunTwiddle(double error);
   /*
   * Constructor
   */

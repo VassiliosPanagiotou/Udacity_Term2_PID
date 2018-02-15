@@ -1,5 +1,6 @@
 #include "PID.h"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -12,12 +13,20 @@ PID::PID(double Kp, double Ki, double Kd, bool runTwiddle)
 	, m_Kd(Kd)
 	, m_RunTwiddle(runTwiddle)
 	, m_StepCount(0)
-	, m_twiddle(Kp, Ki, Kd)
 {
-
-	
+	// Init twiddle struct
+	m_twiddle.k[0] = Kp;
+	m_twiddle.k[1] = Ki;
+	m_twiddle.k[2] = Kd;
+	m_twiddle.dk[0] = fabs(Kp) / 10.0;
+	m_twiddle.dk[1] = fabs(Ki) / 10.0;
+	m_twiddle.dk[2] = fabs(Kd) / 10.0;
+	m_twiddle.index = 0;
+	m_twiddle.isIncrease = true;
+	m_twiddle.threshold = 0.01;
+	m_twiddle.isInitial = true;
+	m_twiddle.bestError = 100000000.0;
 }
-
 
 double PID::getSteerValue(double cte)
 {
@@ -26,7 +35,7 @@ double PID::getSteerValue(double cte)
 	m_p_error = cte;
 	m_i_error += cte;
 
-	if (m_RunTwiddle && (m_StepCount % 500 = 0) )
+	if (m_RunTwiddle && (m_StepCount % 500 == 0) )
 	{
 		double error = m_i_error / (double) m_StepCount;
 		RunTwiddle(error);
